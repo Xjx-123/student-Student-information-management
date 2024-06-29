@@ -1,7 +1,7 @@
 #include "stusql.h"
 #include<QSqlDatabase>
 #include <QSqlQuery>
-#include <QMessageBox>\
+#include <QMessageBox>
 // #include<QtDebug>
 #include<QDebug>
 #include<QCoreApplication>
@@ -9,7 +9,7 @@
 
 //单例
 StuSql *StuSql::ptrstuSql=nullptr;
-
+StuSql *StuSql::ptrUserSql=nullptr;
 
 
 StuSql::StuSql(QObject *parent)
@@ -118,12 +118,11 @@ quint32 StuSql::GetStuCnt()
     quint32 uiCnt=0;
     while(sql.next())
     {
-        //??????
         uiCnt=sql.value(0).toUInt();
     }
     return uiCnt;
 }
-//对数据分页(页数，每页有多少数据)
+//对学生数据分页(页数，每页有多少数据)
 QList<StuInfo> StuSql::GetPageStu(quint32 page, quint32 uiCnt)
 {
     QList<StuInfo> l;
@@ -216,10 +215,24 @@ QList<UserInfo> StuSql::getAllUser()
     return l;
 }
 
-bool StuSql::isExist(QString strUser)
+bool StuSql::isExist(UserInfo info)
+// bool StuSql::isExist(QString strUser)
 {
     QSqlQuery sql(m_db);
-    return sql.exec(QString("select * from username where username='%1'").arg(strUser));
+    // sql.exec(QString("select count(username) from username where username='%1'").arg(strUser));
+    sql.exec(QString("select count(username) from username where username='%1' and password='%2'").arg(info.username).arg(info.password));
+
+    QString name;
+    quint32 uiCnt=0;
+    while(sql.next())
+    {
+
+        uiCnt=sql.value(0).toUInt();
+    }
+
+    qDebug()<<uiCnt;
+    // qDebug()<<name;
+    return uiCnt;
 
 }
 
@@ -229,9 +242,9 @@ bool StuSql::UpdateUserInfo(UserInfo info)
     // /*update student set name = 'asd' where id=25*/;
     //注意：user表里的数据为  auth,
     // 定义的userInfo里面为   aut
-    QString strsql=QString("update username set password = '%1',auth='%2'"
-                             " where username='%3'").
-                     arg(info.password).arg(info.aut).arg(info.username);
+    QString strsql=QString("update username set password = '%1'"
+                             " where username='%2'").
+                     arg(info.password).arg(info.username);
 
     //是否修改成功s
     return sql.exec(strsql);
@@ -254,5 +267,13 @@ bool StuSql::delUser(QString strUserName)
     return sql.exec(QString("delete from username where username='%1'").arg(strUserName));
 
 }
+
+// bool StuSql::checkUser(UserInfo info)
+// {
+//     QSqlQuery sql(m_db);
+//     qDebug()<<"Yes or No";
+//     return sql.exec(QString("select count(*) from username where username='%1' and password = '%2'").arg(info.username).arg(info.password));
+
+// }
 
 

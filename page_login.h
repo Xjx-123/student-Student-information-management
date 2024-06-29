@@ -1,8 +1,9 @@
 #ifndef PAGE_LOGIN_H
 #define PAGE_LOGIN_H
-
+#include"stusql.h"
+// #include"mainwindow.h"
 #include <QWidget>
-
+// #include"stusql.h"
 namespace Ui {
 class page_login;
 }
@@ -25,6 +26,7 @@ signals:
 
 private:
     Ui::page_login *ui;
+    StuSql *m_ptrStuSqllojin;
 };
 
 #endif // PAGE_LOGIN_H

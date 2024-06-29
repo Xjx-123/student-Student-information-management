@@ -47,31 +47,13 @@
      <string>学生信息管理系统</string>
     </property>
    </widget>
-   <widget class="QTreeWidget" name="treeWidget">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>90</y>
-      <width>111</width>
-      <height>431</height>
-     </rect>
-    </property>
-    <attribute name="headerVisible">
-     <bool>false</bool>
-    </attribute>
-    <column>
-     <property name="text">
-      <string notr="true">1</string>
-     </property>
-    </column>
-   </widget>
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
       <x>160</x>
       <y>90</y>
-      <width>621</width>
-      <height>441</height>
+      <width>631</width>
+      <height>431</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -98,8 +80,12 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="le_search"/>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="btn_search">
+        <property name="text">
+         <string>搜索</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="5">
        <widget class="QPushButton" name="btn_del">
@@ -155,6 +141,9 @@
         </column>
        </widget>
       </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="le_search"/>
+      </item>
       <item row="0" column="3">
        <widget class="QPushButton" name="btn_add">
         <property name="text">
@@ -162,16 +151,52 @@
         </property>
        </widget>
       </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="page_2">
+     <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
-       <widget class="QPushButton" name="btn_search">
-        <property name="text">
-         <string>搜索</string>
-        </property>
+       <widget class="QWidget" name="widget_3" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QPushButton" name="btn_searchuser">
+           <property name="text">
+            <string>搜索</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="le_searchuser"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_adduser">
+           <property name="text">
+            <string>添加</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_updateuser">
+           <property name="text">
+            <string>修改</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_deluser">
+           <property name="text">
+            <string>删除</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QTableWidget" name="UserTable"/>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="page_2"/>
    </widget>
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
@@ -220,7 +245,7 @@
      <rect>
       <x>170</x>
       <y>520</y>
-      <width>231</width>
+      <width>261</width>
       <height>41</height>
      </rect>
     </property>
@@ -228,7 +253,7 @@
      <item>
       <widget class="QPushButton" name="bto_simulation">
        <property name="text">
-        <string>模拟数据</string>
+        <string>模拟学生数据</string>
        </property>
       </widget>
      </item>
@@ -247,6 +272,32 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="Student">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>140</y>
+      <width>81</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>学生管理</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="User">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>310</y>
+      <width>81</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>管理员管理</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

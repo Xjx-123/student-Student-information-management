@@ -49,6 +49,18 @@ public:
         return ptrstuSql;
     }
 
+    static StuSql *ptrUserSql;
+    static StuSql *getinstance_user()
+    {
+        //指针名放到后面，出现少“=”情况就会报错
+        if(nullptr==ptrUserSql)
+        {
+            ptrUserSql=new StuSql;
+        }
+        return ptrUserSql;
+    }
+
+
     explicit StuSql(QObject *parent = nullptr);
 
     void init();
@@ -77,7 +89,8 @@ public:
     QList<UserInfo> getAllUser();
 
     //查询用户名是否存在
-    bool isExist(QString strUser);
+    // bool isExist(QString strUser);
+    bool isExist(UserInfo info);
 
     //修改用户信息（只能改密码和权限）
     bool UpdateUserInfo(UserInfo info);
@@ -87,6 +100,9 @@ public:
 
     //删除单个用户
     bool delUser(QString strUserName);
+
+    // // 查找用户是否存在
+    // bool checkUser(UserInfo info);
 
 signals:
 private:
